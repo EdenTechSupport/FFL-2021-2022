@@ -10,7 +10,7 @@ public class SetRequest : MonoBehaviour
     public Text messageText;
     public InputField scoreToSend;
     string ButtonName;
-    public string[] ButtonMask;
+    public List<string> ButtonMask = new List<string>();
 
     readonly string getURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Get.php";
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
@@ -22,7 +22,7 @@ public class SetRequest : MonoBehaviour
 
     void Update()
     {
-      if(!ButtonName.Contains(EventSystem.current.currentSelectedGameObject.name)) m_ButtonName();
+      if(!ButtonMask.Contains(EventSystem.current.currentSelectedGameObject.name)) m_ButtonName();
       print(ButtonName);
     }
 
