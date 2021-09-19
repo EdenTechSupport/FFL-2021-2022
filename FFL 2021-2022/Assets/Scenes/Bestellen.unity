@@ -735,11 +735,11 @@ RectTransform:
   m_Father: {fileID: 75918847}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 150}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &590811734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,7 +783,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 834282244}
+      - m_Target: {fileID: 0}
         m_MethodName: OnButtonSendScore
         m_Mode: 1
         m_Arguments:
@@ -807,13 +807,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21176472, g: 0.21176472, b: 0.21176472, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9da120f947dcdf144b79e6d0fb0bdf7f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1056,11 +1056,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 834282243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d03895357df218449c6c8f5a2d6ae8a, type: 3}
+  m_Script: {fileID: 11500000, guid: a441327cc3ebad04aa888fc0dfa8453e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 0}
   scoreToSend: {fileID: 0}
+  ButtonMask:
+  - Brood
+  - Zuivel
 --- !u!4 &834282245
 Transform:
   m_ObjectHideFlags: 0
