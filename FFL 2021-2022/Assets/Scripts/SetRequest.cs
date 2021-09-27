@@ -9,7 +9,9 @@ public class SetRequest : MonoBehaviour
 {
     public string Bestelling;
     string ButtonName;
+    string ButtonName2;
     public List<string> ButtonMask = new List<string>();
+    public List<string> BoodSchappen = new List<string>();
 
     readonly string getURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Get.php";
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
@@ -23,44 +25,26 @@ public class SetRequest : MonoBehaviour
     {
       if(!ButtonMask.Contains(EventSystem.current.currentSelectedGameObject.name)) m_ButtonName();
       print(ButtonName);
+      if(ButtonName != ButtonName2) 
+      {
+        ButtonName2 = ButtonName;
+        BoodSchappen.Add(ButtonName);
+      }
     }
 
     void m_ButtonName()
     {
       ButtonName = EventSystem.current.currentSelectedGameObject.name;
     }
-    public void OnButtonGetScore()
-    {
-        StartCoroutine(SimpleGetRequest());
-    }
-
-    IEnumerator SimpleGetRequest()
-    {
-        UnityWebRequest www = UnityWebRequest.Get(getURL);
-
-        yield return www.SendWebRequest();
-
-        if(www.isNetworkError || www.isHttpError)
-        {
-            Debug.LogError(www.error);
-        }
-
-        else
-        {
-            print("error");
-        }
-    }
-
     public void OnButtonSendScore()
     {
-        if (Bestelling == string.Empty)
-        {
-            print("empty string");
-        }
-        else
-        {
-            StartCoroutine(SimplePostRequest(Bestelling));
-        }
+      string[] BoodSchappenArr = BoodSchappen.ToArray();
+      for(int i = 0; i < BoodSchappenArr.Length; i++)
+      {
+        Bestelling += " : " + BoodSchappenArr[i];
+      }
+      print(Bestelling);
+      StartCoroutine(SimplePostRequest(Bestelling));
     }
 
     IEnumerator SimplePostRequest(string curScore)
