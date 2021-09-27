@@ -7,8 +7,7 @@ using UnityEngine.EventSystems;
 
 public class SetRequest : MonoBehaviour
 {
-    public Text messageText;
-    public InputField scoreToSend;
+    public string Bestelling;
     string ButtonName;
     public List<string> ButtonMask = new List<string>();
 
@@ -17,7 +16,7 @@ public class SetRequest : MonoBehaviour
 
     private void Start()
     {
-        messageText.text = "bestelling";
+  
     }
 
     void Update()
@@ -32,7 +31,6 @@ public class SetRequest : MonoBehaviour
     }
     public void OnButtonGetScore()
     {
-        messageText.text = "Downloading data...";
         StartCoroutine(SimpleGetRequest());
     }
 
@@ -49,20 +47,19 @@ public class SetRequest : MonoBehaviour
 
         else
         {
-            messageText.text = www.downloadHandler.text;
+            print("error");
         }
     }
 
     public void OnButtonSendScore()
     {
-        if (scoreToSend.text == string.Empty)
+        if (Bestelling == string.Empty)
         {
-            messageText.text = "Error: No high score to send.\nEnter a value in the input field.";
+            print("empty string");
         }
         else
         {
-            messageText.text = "Sending data...";
-            StartCoroutine(SimplePostRequest(scoreToSend.text));
+            StartCoroutine(SimplePostRequest(Bestelling));
         }
     }
 
@@ -78,11 +75,6 @@ public class SetRequest : MonoBehaviour
         if (www.isNetworkError || www.isHttpError)
         {
             Debug.LogError(www.error);
-        }
-
-        else
-        {
-            messageText.text = www.downloadHandler.text;
         }
     }
 }
