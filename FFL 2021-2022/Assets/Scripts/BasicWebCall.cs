@@ -8,7 +8,7 @@ public class BasicWebCall : MonoBehaviour
 {
     public string Bestelling;
     public string[] BestellingArr;
-    public GameObject[] Prefabs;
+    public Text text;
     readonly string getURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Get.php";
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
 
@@ -49,10 +49,7 @@ public class BasicWebCall : MonoBehaviour
         BestellingArr = Bestelling.Substring(1).Split(':');
         for(int i = 0;i<BestellingArr.Length;i++)
         {
-             if(Prefabs.Contains.(BestellingArr[i]))
-             {
-                 print("huts");
-             }
+            text.text += "\n" + BestellingArr[i];
         }
     }
 }
