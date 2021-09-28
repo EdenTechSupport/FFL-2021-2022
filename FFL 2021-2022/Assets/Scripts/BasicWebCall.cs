@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class BasicWebCall : MonoBehaviour
 {
     public string Bestelling;
-
+    public string[] BestellingArr;
+    public GameObject[] Prefabs;
     readonly string getURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Get.php";
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
 
@@ -38,7 +39,20 @@ public class BasicWebCall : MonoBehaviour
             if(www.downloadHandler.text != Bestelling)
             {
                 Bestelling = www.downloadHandler.text;
+                Split();
             }    
+        }
+    }
+
+    private void Split()
+    {
+        BestellingArr = Bestelling.Substring(1).Split(':');
+        for(int i = 0;i<BestellingArr.Length;i++)
+        {
+             if(Prefabs.Contains.(BestellingArr[i]))
+             {
+                 print("huts");
+             }
         }
     }
 }
