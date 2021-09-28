@@ -41,7 +41,7 @@ public class SetRequest : MonoBehaviour
       string[] BoodSchappenArr = BoodSchappen.ToArray();
       for(int i = 0; i < BoodSchappenArr.Length; i++)
       {
-        Bestelling += " : " + BoodSchappenArr[i];
+        Bestelling += ":" + BoodSchappenArr[i];
       }
       print(Bestelling);
       StartCoroutine(SimplePostRequest(Bestelling));
