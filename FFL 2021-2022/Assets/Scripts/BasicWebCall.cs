@@ -40,7 +40,8 @@ public class BasicWebCall : MonoBehaviour
             if(www.downloadHandler.text != Bestelling)
             {
                 Bestelling = www.downloadHandler.text;
-                Split();
+                BestellingArr = Bestelling.Substring(1).Split(':');
+                //Split();
             }    
         }
     }

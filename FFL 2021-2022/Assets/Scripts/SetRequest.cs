@@ -12,6 +12,7 @@ public class SetRequest : MonoBehaviour
     string ButtonName2;
     public List<string> ButtonMask = new List<string>();
     public List<string> BoodSchappen = new List<string>();
+    string[] BoodSchappenArr;
 
     readonly string getURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Get.php";
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
@@ -38,7 +39,7 @@ public class SetRequest : MonoBehaviour
     }
     public void OnButtonSendScore()
     {
-      string[] BoodSchappenArr = BoodSchappen.ToArray();
+      BoodSchappenArr = BoodSchappen.ToArray();
       for(int i = 0; i < BoodSchappenArr.Length; i++)
       {
         Bestelling += ":" + BoodSchappenArr[i];
@@ -60,5 +61,14 @@ public class SetRequest : MonoBehaviour
         {
             Debug.LogError(www.error);
         }
+        Bestelling = "";
+        ClearArray();
+        
+    }
+
+    public void ClearArray()
+    {
+      BoodSchappen.Clear();
+      for(int i = 0;i<BoodSchappenArr.Length;i++) BoodSchappenArr[i] = null;
     }
 }

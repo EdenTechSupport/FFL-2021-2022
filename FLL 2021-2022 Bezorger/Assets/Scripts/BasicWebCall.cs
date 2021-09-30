@@ -14,7 +14,7 @@ public class BasicWebCall : MonoBehaviour
 
     private void Start()
     {
-        text.text = "";
+        text.text = " ";
         InvokeRepeating("GetScore", 0f, 2f);
     }
     
