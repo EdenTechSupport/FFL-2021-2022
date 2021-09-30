@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class SetRequest : MonoBehaviour
 {
     public string Bestelling;
+    string bestelling2;
     string ButtonName;
     string ButtonName2;
     public List<string> ButtonMask = new List<string>();
@@ -39,30 +40,34 @@ public class SetRequest : MonoBehaviour
     }
     public void OnButtonSendScore()
     {
-      BoodSchappenArr = BoodSchappen.ToArray();
-      for(int i = 0; i < BoodSchappenArr.Length; i++)
+     
+      if(Bestelling != bestelling2)
       {
-        Bestelling += ":" + BoodSchappenArr[i];
+        BoodSchappenArr = BoodSchappen.ToArray();
+        for(int i = 0; i < BoodSchappenArr.Length; i++)
+        {
+          Bestelling += ":" + BoodSchappenArr[i];
+        }
+        bestelling2 = Bestelling;
+        StartCoroutine(SimplePostRequest(Bestelling));
       }
-      print(Bestelling);
-      StartCoroutine(SimplePostRequest(Bestelling));
     }
 
     IEnumerator SimplePostRequest(string curScore)
     {
-        List<IMultipartFormSection> wwwForm = new List<IMultipartFormSection>();
-        wwwForm.Add(new MultipartFormDataSection("curScoreKey", curScore));
+      List<IMultipartFormSection> wwwForm = new List<IMultipartFormSection>();
+      wwwForm.Add(new MultipartFormDataSection("curScoreKey", curScore));
 
-        UnityWebRequest www = UnityWebRequest.Post(postURL, wwwForm);
+      UnityWebRequest www = UnityWebRequest.Post(postURL, wwwForm);
 
-        yield return www.SendWebRequest();
+      yield return www.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
-        {
-            Debug.LogError(www.error);
-        }
-        Bestelling = "";
-        ClearArray();
+      if (www.isNetworkError || www.isHttpError)
+      {
+        Debug.LogError(www.error);
+      }
+      Bestelling = null;
+      ClearArray();
         
     }
 
