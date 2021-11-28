@@ -14,7 +14,6 @@ public class BasicWebCall : MonoBehaviour
 
     private void Start()
     {
-        text.text = " ";
         InvokeRepeating("GetScore", 0f, 2f);
     }
     
@@ -48,6 +47,7 @@ public class BasicWebCall : MonoBehaviour
     private void Split()
     {
         BestellingArr = Bestelling.Substring(1).Split(':');
+        text.text = null;
         for(int i = 0;i<BestellingArr.Length;i++)
         {
             text.text += "\n" + BestellingArr[i];

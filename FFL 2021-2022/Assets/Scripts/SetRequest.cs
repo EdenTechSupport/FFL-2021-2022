@@ -7,6 +7,11 @@ using UnityEngine.EventSystems;
 
 public class SetRequest : MonoBehaviour
 {
+    string SelectedGameobject;
+    string SelectedGameobject1;
+    bool CoRoutineRunning;
+    public GameObject rect;
+    public bool Scrolling;
     public string Bestelling;
     string bestelling2;
     string ButtonName;
@@ -15,29 +20,38 @@ public class SetRequest : MonoBehaviour
     public List<string> BoodSchappen = new List<string>();
     string[] BoodSchappenArr;
 
-    readonly string getURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Get.php";
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
+    public float PrevRect;
 
     private void Start()
     {
-  
+        ButtonMask.Add(null);
     }
 
     void Update()
     {
-      if(!ButtonMask.Contains(EventSystem.current.currentSelectedGameObject.name)) m_ButtonName();
-      print(ButtonName);
-      if(ButtonName != ButtonName2) 
-      {
-        ButtonName2 = ButtonName;
-        BoodSchappen.Add(ButtonName);
-      }
+        if(SelectedGameobject != EventSystem.current.currentSelectedGameObject.name && SelectedGameobject1 != EventSystem.current.currentSelectedGameObject.name)
+        {
+            SelectedGameobject = EventSystem.current.currentSelectedGameObject.name;
+            SelectedGameobject1 = EventSystem.current.currentSelectedGameObject.name;
+        }
+        print(rect.transform.position.y);
+        if (!ButtonMask.Contains(SelectedGameobject) && CoRoutineRunning == false)
+        {
+            PrevRect = rect.transform.position.y;
+            StartCoroutine(ExecuteAfterTime(0.5f));
+            CoRoutineRunning = true;
+        }
+
+        //print(ButtonName);
+        if (ButtonName != ButtonName2)
+        {
+            ButtonName2 = ButtonName;
+            BoodSchappen.Add(ButtonName);
+        }
+
     }
 
-    void m_ButtonName()
-    {
-      ButtonName = EventSystem.current.currentSelectedGameObject.name;
-    }
     public void OnButtonSendScore()
     {
      
@@ -76,4 +90,18 @@ public class SetRequest : MonoBehaviour
       BoodSchappen.Clear();
       for(int i = 0;i<BoodSchappenArr.Length;i++) BoodSchappenArr[i] = null;
     }
+
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (rect.transform.position.y == PrevRect)
+        {
+            ButtonName = SelectedGameobject;
+            SelectedGameobject = null;
+        }
+        else SelectedGameobject = null;
+        CoRoutineRunning = false;
+    }
+
 }
