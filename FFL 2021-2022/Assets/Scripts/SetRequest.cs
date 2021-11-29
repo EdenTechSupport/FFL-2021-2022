@@ -35,7 +35,7 @@ public class SetRequest : MonoBehaviour
             SelectedGameobject = EventSystem.current.currentSelectedGameObject.name;
             SelectedGameobject1 = EventSystem.current.currentSelectedGameObject.name;
         }
-        print(rect.transform.position.y);
+        //print(rect.transform.position.y);
         if (!ButtonMask.Contains(SelectedGameobject) && CoRoutineRunning == false)
         {
             PrevRect = rect.transform.position.y;
