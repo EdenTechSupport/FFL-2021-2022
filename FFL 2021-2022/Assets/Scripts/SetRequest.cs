@@ -19,6 +19,7 @@ public class SetRequest : MonoBehaviour
     public List<string> ButtonMask = new List<string>();
     public List<string> BoodSchappen = new List<string>();
     string[] BoodSchappenArr;
+    public GameObject[] Counters;
 
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
     public float PrevRect;
@@ -26,8 +27,10 @@ public class SetRequest : MonoBehaviour
     private void Start()
     {
         ButtonMask.Add(null);
-    }
 
+        Counters = GameObject.FindGameObjectsWithTag("Counter");
+    }
+    
     void Update()
     {
         if(SelectedGameobject != EventSystem.current.currentSelectedGameObject.name && SelectedGameobject1 != EventSystem.current.currentSelectedGameObject.name)
