@@ -13593,7 +13593,7 @@ GameObject:
   - component: {fileID: 1273200130}
   - component: {fileID: 1273200129}
   m_Layer: 5
-  m_Name: CounterAppel
+  m_Name: Appel
   m_TagString: Counter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13650,7 +13650,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3x
+  m_Text: 0
 --- !u!222 &1273200130
 CanvasRenderer:
   m_ObjectHideFlags: 0

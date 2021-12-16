@@ -51,8 +51,8 @@ public class SetRequest : MonoBehaviour
         {
             ButtonName2 = ButtonName;
             BoodSchappen.Add(ButtonName);
+            addCounters();
         }
-
     }
 
     public void OnButtonSendScore()
@@ -105,6 +105,20 @@ public class SetRequest : MonoBehaviour
         }
         else SelectedGameobject = null;
         CoRoutineRunning = false;
+    }
+
+    void addCounters()
+    {
+        for (int i = 0; i < Counters.Length; i++)
+        {
+            string cntrs = Counters[i].GetComponent<Text>().text;
+            int b = int.Parse(cntrs);
+            if (BoodSchappen.Contains(Counters[i].name))
+            {
+                b++;
+                Counters[i].GetComponent<Text>().text = b.ToString();
+            }
+        }
     }
 
 }
