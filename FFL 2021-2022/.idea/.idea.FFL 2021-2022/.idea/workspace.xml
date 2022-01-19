@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6d9b6b0-070a-4d6f-9efa-24cbd919bb69" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FFL 2021-2022/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FFL 2021-2022/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SetRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SetRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +59,8 @@
       <option name="presentableId" value="Default" />
       <updated>1642602914998</updated>
       <workItem from="1642602921569" duration="2534000" />
+      <workItem from="1642630594977" duration="169000" />
+      <workItem from="1642630811883" duration="301000" />
     </task>
     <servers />
   </component>

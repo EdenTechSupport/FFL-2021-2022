@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -43,17 +44,17 @@ public class SetRequest : MonoBehaviour
 
     public void OnButtonSendScore()
     {
-     
-      if(Bestelling != bestelling2)
-      {
-        BoodSchappenArr = BoodSchappen.ToArray();
-        for(int i = 0; i < BoodSchappenArr.Length; i++)
-        {
-          Bestelling += ":" + BoodSchappenArr[i];
+        if(Bestelling != bestelling2)
+        { 
+            BoodSchappenArr = BoodSchappen.ToArray();
+            for(int i = 0; i < BoodSchappenArr.Length; i++)
+            {
+               Bestelling += ":" + BoodSchappenArr[i];
+            } 
+            bestelling2 = Bestelling;
+            StartCoroutine(SimplePostRequest(Bestelling)); 
+            ClearCounters();
         }
-        bestelling2 = Bestelling;
-        StartCoroutine(SimplePostRequest(Bestelling));
-      }
     }
 
     IEnumerator SimplePostRequest(string curScore)
@@ -115,6 +116,11 @@ public class SetRequest : MonoBehaviour
     public void setGameobject()
     {
         SelectedGameobject = EventSystem.current.currentSelectedGameObject.name;
+    }
+
+    private void ClearCounters()
+    {
+        for(int i = 0;i<Counters.Length;i++) Counters[i].GetComponent<Text>().text = "0";
     }
 
 }
