@@ -18,6 +18,7 @@ public class SetRequest : MonoBehaviour
     string ButtonName2;
     public List<string> ButtonMask = new List<string>();
     public List<string> BoodSchappen = new List<string>();
+    List<string> DuplicateBoodschappen = new List<string>();
     string[] BoodSchappenArr;
     public GameObject[] Counters;
 
@@ -27,31 +28,16 @@ public class SetRequest : MonoBehaviour
     private void Start()
     {
         ButtonMask.Add(null);
-
         Counters = GameObject.FindGameObjectsWithTag("Counter");
     }
     
     void Update()
     {
-        if(SelectedGameobject != EventSystem.current.currentSelectedGameObject.name && SelectedGameobject1 != EventSystem.current.currentSelectedGameObject.name)
-        {
-            SelectedGameobject = EventSystem.current.currentSelectedGameObject.name;
-            SelectedGameobject1 = EventSystem.current.currentSelectedGameObject.name;
-        }
-        //print(rect.transform.position.y);
         if (!ButtonMask.Contains(SelectedGameobject) && CoRoutineRunning == false)
         {
             PrevRect = rect.transform.position.y;
             StartCoroutine(ExecuteAfterTime(0.5f));
             CoRoutineRunning = true;
-        }
-
-        //print(ButtonName);
-        if (ButtonName != ButtonName2)
-        {
-            ButtonName2 = ButtonName;
-            BoodSchappen.Add(ButtonName);
-            addCounters();
         }
     }
 
@@ -102,6 +88,7 @@ public class SetRequest : MonoBehaviour
         {
             ButtonName = SelectedGameobject;
             SelectedGameobject = null;
+            addBoodschappen();
         }
         else SelectedGameobject = null;
         CoRoutineRunning = false;
@@ -113,12 +100,21 @@ public class SetRequest : MonoBehaviour
         {
             string cntrs = Counters[i].GetComponent<Text>().text;
             int b = int.Parse(cntrs);
-            if (BoodSchappen.Contains(Counters[i].name))
+            if (BoodSchappen.Contains(Counters[i].name)&&Counters[i].name == ButtonName)
             {
                 b++;
                 Counters[i].GetComponent<Text>().text = b.ToString();
             }
         }
+    }
+    void addBoodschappen()
+    {
+        BoodSchappen.Add(ButtonName);
+        addCounters();
+    }
+    public void setGameobject()
+    {
+        SelectedGameobject = EventSystem.current.currentSelectedGameObject.name;
     }
 
 }
