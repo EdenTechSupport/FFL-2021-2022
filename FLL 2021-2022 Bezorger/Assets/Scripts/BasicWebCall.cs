@@ -8,13 +8,15 @@ public class BasicWebCall : MonoBehaviour
 {
     public string Bestelling;
     public string[] BestellingArr;
+    List<int> BestellingList = new List<int>();
     public Text text;
     readonly string getURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Get.php";
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
+    int Score;
 
     private void Start()
     {
-        InvokeRepeating("GetScore", 0f, 2f);
+        InvokeRepeating("GetScore", 0f, 5f);
     }
     
 
@@ -48,9 +50,31 @@ public class BasicWebCall : MonoBehaviour
     {
         BestellingArr = Bestelling.Substring(1).Split(':');
         text.text = null;
-        for(int i = 0;i<BestellingArr.Length;i++)
+        CountArray();
+    }
+
+    private void CountArray()
+    {
+        for (int i = 0; i < BestellingArr.Length; i++)
         {
-            text.text += "\n" + BestellingArr[i];
+            for (int j = 0; j < BestellingArr.Length; j++)
+            {
+                if (BestellingArr[i].Contains(BestellingArr[j]))
+                {
+                    Score++;
+                }
+                if(j == BestellingArr.Length -1)
+                {
+                    AddText(BestellingArr[i], Score);
+                }
+            }
         }
     }
+
+    private void AddText(string Product, int j)
+    {
+        if(!text.text.Contains(Product)) text.text += Product + " " + j+ "\n";
+        Score = 0;
+    }
 }
+
