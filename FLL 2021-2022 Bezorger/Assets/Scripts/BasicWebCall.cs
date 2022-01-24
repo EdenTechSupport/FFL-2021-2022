@@ -73,7 +73,7 @@ public class BasicWebCall : MonoBehaviour
 
     private void AddText(string Product, int j)
     {
-        if(!text.text.Contains(Product)) text.text += Product + " " + j+ "\n";
+        if(!text.text.Contains(Product)) text.text += "-" + Product + " " + j+ "x\n";
         Score = 0;
     }
 }
