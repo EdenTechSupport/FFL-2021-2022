@@ -37,7 +37,7 @@ public class SetRequest : MonoBehaviour
         if (!ButtonMask.Contains(SelectedGameobject) && CoRoutineRunning == false)
         {
             PrevRect = rect.transform.position.y;
-            StartCoroutine(ExecuteAfterTime(0.5f));
+            StartCoroutine(ExecuteAfterTime(0.1f));
             CoRoutineRunning = true;
         }
     }
@@ -52,7 +52,7 @@ public class SetRequest : MonoBehaviour
                Bestelling += ":" + BoodSchappenArr[i];
             } 
             bestelling2 = Bestelling;
-            StartCoroutine(SimplePostRequest(Bestelling)); 
+            StartCoroutine(SimplePostRequest(Bestelling + ":Eden Spijker:Heinoseweg6")); 
             ClearCounters();
         }
     }

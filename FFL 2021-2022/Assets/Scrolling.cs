@@ -6,6 +6,6 @@ public class Scrolling : MonoBehaviour
 {
     public void ChangeRect(float y)
     {
-        GetComponent<RectTransform>().sizeDelta = new Vector3(transform.localScale.x, y, transform.localScale.z);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(transform.localScale.x, y);
     }
 }
