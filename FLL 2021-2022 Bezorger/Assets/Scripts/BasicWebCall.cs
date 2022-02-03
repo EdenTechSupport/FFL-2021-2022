@@ -13,6 +13,8 @@ public class BasicWebCall : MonoBehaviour
     readonly string getURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Get.php";
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
     int Score;
+    public RectTransform UI;
+    public byte Lines = 0;
 
     private void Start()
     {
@@ -48,7 +50,7 @@ public class BasicWebCall : MonoBehaviour
 
     private void Split()
     {
-        BestellingArr = Bestelling.Substring(1).Split(':');
+        BestellingArr = Bestelling.Substring(1).Replace("Eden Spijker:Heinoseweg6", "").Split(':');
         text.text = null;
         CountArray();
     }
@@ -63,7 +65,7 @@ public class BasicWebCall : MonoBehaviour
                 {
                     Score++;
                 }
-                if(j == BestellingArr.Length -1)
+                if(j == BestellingArr.Length -2)
                 {
                     AddText(BestellingArr[i], Score);
                 }
@@ -73,8 +75,25 @@ public class BasicWebCall : MonoBehaviour
 
     private void AddText(string Product, int j)
     {
-        if(!text.text.Contains(Product)) text.text += "-" + Product + " " + j+ "x\n";
+        if (!text.text.Contains(Product))
+        {
+            text.text += "-" + Product + " " + j+ "x\n";
+            Lines++;
+        }
         Score = 0;
+    }
+
+    public void StartAnimation(float time)
+    {
+        if(Lines > 0)StartCoroutine(Animation(300 + Lines * 80,time));
+    }
+    IEnumerator Animation(int height, float time)
+    {
+        yield return new WaitForSeconds(0.01f);
+
+        UI.sizeDelta = UI.sizeDelta  + new Vector2(0 ,height / time * 0.01f);
+        if (UI.sizeDelta.y < height) StartCoroutine(Animation(height, time));
+        else Lines = 0;
     }
 }
 

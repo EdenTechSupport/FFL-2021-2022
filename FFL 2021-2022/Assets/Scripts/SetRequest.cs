@@ -22,7 +22,7 @@ public class SetRequest : MonoBehaviour
     List<string> DuplicateBoodschappen = new List<string>();
     string[] BoodSchappenArr;
     public GameObject[] Counters;
-
+    public GameObject Anim;
     readonly string postURL = "https://ffl2021-2022.000webhostapp.com/UWR_Tut_Post.php";
     public float PrevRect;
 
@@ -52,14 +52,15 @@ public class SetRequest : MonoBehaviour
                Bestelling += ":" + BoodSchappenArr[i];
             } 
             bestelling2 = Bestelling;
-            StartCoroutine(SimplePostRequest(Bestelling + ":Eden Spijker:Heinoseweg6")); 
+            StartCoroutine(SimplePostRequest(Bestelling + ":Eden Spijker:Heinoseweg6"));
+            Anim.GetComponent<Animator>().Play("BestellingVoltooid");
             ClearCounters();
         }
     }
 
     IEnumerator SimplePostRequest(string curScore)
     {
-      List<IMultipartFormSection> wwwForm = new List<IMultipartFormSection>();
+        List<IMultipartFormSection> wwwForm = new List<IMultipartFormSection>();
       wwwForm.Add(new MultipartFormDataSection("curScoreKey", curScore));
 
       UnityWebRequest www = UnityWebRequest.Post(postURL, wwwForm);
